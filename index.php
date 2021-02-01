@@ -1,6 +1,3 @@
-<?php
-    session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +7,7 @@
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-<div class="login">
+<div class="wrapper">
 	<h1>Login</h1>
     <form action="validation.php" method="post">
         <input type="text" name="username" value="<?php echo htmlspecialchars($username)?>" placeholder="Username"/>
@@ -24,3 +21,11 @@
 </div>
 </body>
 </html>
+<?php
+  session_start();
+  if(isset($_SESSION['username']) && isset($_SESSION['password'])){
+    $url= 'panel.php';
+    header('Location: ' . $url);
+    exit();
+  }
+?>
